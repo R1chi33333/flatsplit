@@ -12,7 +12,7 @@ Development follows small, releasable increments. Each item below is one loop.
 
 ## Milestone: v0.2.0 — Core product
 
-- [ ] Loop 5: flat dashboard shell — navigation, member list, responsive layout
+- [x] Loop 5: flat dashboard shell — navigation, member list, responsive layout
 - [ ] Loop 6: expense CRUD — add, edit, delete with equal, ratio and fixed splits
 - [ ] Loop 7: settlement view — who owes whom, minimum transfers, mark as settled
 - [ ] Loop 8: demo flat seed data — 4 members, 3 months of realistic expenses; one-click demo login lands here
