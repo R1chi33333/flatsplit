@@ -21,7 +21,7 @@ Development follows small, releasable increments. Each item below is one loop.
 ## Milestone: v0.3.0 — CSV import and landing
 
 - [x] Loop 9: CSV import with nz-bank-parser — upload, select shared transactions, bulk add
-- [ ] Loop 10: landing page with product story, screenshots and Try demo button
+- [x] Loop 10: landing page with product story, screenshot and Try demo button
 - [ ] Loop 11: Playwright e2e — demo login flow and CSV import flow
 - [ ] Release v0.3.0
 
