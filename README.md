@@ -4,7 +4,7 @@
 
 # FlatSplit — fair expenses for New Zealand flats
 
-[Live Demo](https://flatsplit.vercel.app) · [Documentation](#getting-started) · [Report Bug](https://github.com/R1chi33333/flatsplit/issues/new?template=bug_report.md)
+[Live Demo](https://flatsplit-nz.vercel.app) · [Documentation](#getting-started) · [Report Bug](https://github.com/R1chi33333/flatsplit/issues/new?template=bug_report.md)
 
 > Status: under active development, pre-v0.1.0.
 
