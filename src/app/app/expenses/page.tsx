@@ -1,4 +1,5 @@
-import { Trash2 } from 'lucide-react';
+import { FileUp, Trash2 } from 'lucide-react';
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { auth } from '@/auth';
 import { getFlatContext, getFlatExpenses } from '@/db/queries';
@@ -46,7 +47,16 @@ export default async function ExpensesPage() {
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <h1 className="text-xl font-semibold">Expenses</h1>
-        <span className="font-mono text-sm text-fg-muted">{rows.length} recorded</span>
+        <div className="flex items-center gap-4">
+          <Link
+            href="/app/expenses/import"
+            className="flex items-center gap-1.5 text-sm text-fg-muted transition-colors hover:text-fg"
+          >
+            <FileUp className="size-4" strokeWidth={1.5} />
+            Import CSV
+          </Link>
+          <span className="font-mono text-sm text-fg-muted">{rows.length} recorded</span>
+        </div>
       </div>
 
       <ExpenseForm
