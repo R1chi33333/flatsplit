@@ -1,8 +1,10 @@
 import NextAuth from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
+import Resend from 'next-auth/providers/resend';
+import { DrizzleAdapter } from '@auth/drizzle-adapter';
 import { eq } from 'drizzle-orm';
 import { getDb } from '@/db';
-import { users } from '@/db/schema';
+import { accounts, sessions, users, verificationTokens } from '@/db/schema';
 
 export const DEMO_EMAIL = 'demo@flatsplit.example';
 const DEMO_NAME = 'Demo Flatmate';
@@ -16,7 +18,7 @@ async function ensureDemoUser(): Promise<{ id: string; email: string; name: stri
   const db = getDb();
   const existing = await db.query.users.findFirst({ where: eq(users.email, DEMO_EMAIL) });
   if (existing) {
-    return { id: existing.id, email: existing.email, name: existing.name };
+    return { id: existing.id, email: existing.email, name: existing.name ?? DEMO_NAME };
   }
   const inserted = await db
     .insert(users)
@@ -27,34 +29,47 @@ async function ensureDemoUser(): Promise<{ id: string; email: string; name: stri
   if (!user) {
     throw new Error('Failed to provision the demo user');
   }
-  return { id: user.id, email: user.email, name: user.name };
+  return { id: user.id, email: user.email, name: user.name ?? DEMO_NAME };
 }
 
-export const { handlers, auth, signIn, signOut } = NextAuth({
-  session: { strategy: 'jwt' },
-  providers: [
-    Credentials({
-      id: 'demo',
-      name: 'Demo account',
-      credentials: {},
-      authorize: async () => ensureDemoUser(),
+export const { handlers, auth, signIn, signOut } = NextAuth(() => {
+  const db = getDb();
+  return {
+    adapter: DrizzleAdapter(db, {
+      usersTable: users,
+      accountsTable: accounts,
+      sessionsTable: sessions,
+      verificationTokensTable: verificationTokens,
     }),
-  ],
-  pages: {
-    signIn: '/login',
-  },
-  callbacks: {
-    jwt({ token, user }) {
-      if (user?.id) {
-        token.userId = user.id;
-      }
-      return token;
+    session: { strategy: 'jwt' },
+    providers: [
+      Credentials({
+        id: 'demo',
+        name: 'Demo account',
+        credentials: {},
+        authorize: async () => ensureDemoUser(),
+      }),
+      Resend({
+        from: 'FlatSplit <onboarding@resend.dev>',
+      }),
+    ],
+    pages: {
+      signIn: '/login',
+      verifyRequest: '/login/verify',
     },
-    session({ session, token }) {
-      if (typeof token.userId === 'string') {
-        session.user.id = token.userId;
-      }
-      return session;
+    callbacks: {
+      jwt({ token, user }) {
+        if (user?.id) {
+          token.userId = user.id;
+        }
+        return token;
+      },
+      session({ session, token }) {
+        if (typeof token.userId === 'string') {
+          session.user.id = token.userId;
+        }
+        return session;
+      },
     },
-  },
+  };
 });

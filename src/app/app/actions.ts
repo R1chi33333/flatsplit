@@ -18,7 +18,8 @@ async function requireUser(): Promise<{ id: string; name: string }> {
   if (!user) {
     redirect('/login');
   }
-  return { id: user.id, name: user.name };
+  // Magic-link users have no name yet; fall back to the email handle.
+  return { id: user.id, name: user.name ?? user.email.split('@')[0] ?? 'Flatmate' };
 }
 
 export interface ActionState {
