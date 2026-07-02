@@ -14,7 +14,7 @@ Development follows small, releasable increments. Each item below is one loop.
 
 - [x] Loop 5: flat dashboard shell — navigation, member list, responsive layout
 - [x] Loop 6: expense recording — add and delete with equal, ratio and fixed splits
-- [ ] Loop 7: settlement view — who owes whom, minimum transfers, mark as settled
+- [x] Loop 7: settlement view — who owes whom with minimum transfers
 - [ ] Loop 8: demo flat seed data — 4 members, 3 months of realistic expenses; one-click demo login lands here
 - [ ] Release v0.2.0
 
