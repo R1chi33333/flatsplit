@@ -28,7 +28,7 @@ Development follows small, releasable increments. Each item below is one loop.
 ## Milestone: v1.0.0 — Ship
 
 - [ ] Loop 12: magic-link email auth, invite codes for real flats
-- [ ] Loop 13: polish pass — empty states, loading states, mobile audit
+- [x] Loop 13: polish pass — mobile audit clean on all pages, empty and loading states in place
 - [ ] Loop 14: README with product screenshot, settlement algorithm explainer, coverage badge
 - [ ] Release v1.0.0
 
