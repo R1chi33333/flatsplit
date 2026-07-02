@@ -29,8 +29,8 @@ Development follows small, releasable increments. Each item below is one loop.
 
 - [x] Loop 12: magic-link email auth via Resend alongside the demo account
 - [x] Loop 13: polish pass — mobile audit clean on all pages, empty and loading states in place
-- [ ] Loop 14: README with product screenshot, settlement algorithm explainer, coverage badge
-- [ ] Release v1.0.0
+- [x] Loop 14: README with product screenshot, settlement algorithm explainer, coverage badge
+- [x] Release v1.0.0
 
 ## Later
 

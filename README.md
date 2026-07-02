@@ -19,6 +19,7 @@ Flatting is how most young New Zealanders live, and every flat runs the same spr
 - Settlement view: who owes whom, with the minimum number of transfers
 - Import bank CSV exports via [nz-bank-parser](https://github.com/R1chi33333/nz-bank-parser) and turn shared transactions into expenses in bulk
 - One-click demo flat with realistic data, no signup needed
+- Magic-link email sign-in for real flats (note: until a sending domain is verified with Resend, sign-in emails only deliver to the project owner's address)
 - All amounts in integer cents, so totals always add up
 
 ## How settlement works
