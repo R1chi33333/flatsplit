@@ -1,7 +1,7 @@
 import NextAuth from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import { eq } from 'drizzle-orm';
-import { db } from '@/db';
+import { getDb } from '@/db';
 import { users } from '@/db/schema';
 
 export const DEMO_EMAIL = 'demo@flatsplit.example';
@@ -13,6 +13,7 @@ const DEMO_NAME = 'Demo Flatmate';
  * dashboard in one click, no signup.
  */
 async function ensureDemoUser(): Promise<{ id: string; email: string; name: string }> {
+  const db = getDb();
   const existing = await db.query.users.findFirst({ where: eq(users.email, DEMO_EMAIL) });
   if (existing) {
     return { id: existing.id, email: existing.email, name: existing.name };

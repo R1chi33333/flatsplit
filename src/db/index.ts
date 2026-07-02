@@ -2,14 +2,24 @@ import { neon } from '@neondatabase/serverless';
 import { drizzle } from 'drizzle-orm/neon-http';
 import * as schema from './schema';
 
-function requireDatabaseUrl(): string {
+function createDb() {
   const url = process.env.DATABASE_URL;
   if (!url) {
     throw new Error('DATABASE_URL is not set. Copy .env.example to .env.local and fill it in.');
   }
-  return url;
+  return drizzle(neon(url), { schema });
 }
 
-export const db = drizzle(neon(requireDatabaseUrl()), { schema });
+export type Database = ReturnType<typeof createDb>;
 
-export type Database = typeof db;
+let instance: Database | undefined;
+
+/**
+ * Lazily initialised database client. Resolving the connection at
+ * first query rather than import keeps DATABASE_URL out of build-time
+ * page-data collection, where no database is available.
+ */
+export function getDb(): Database {
+  instance ??= createDb();
+  return instance;
+}
