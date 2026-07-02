@@ -1,4 +1,5 @@
-import { Split } from 'lucide-react';
+import { ArrowRight, Split } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -22,8 +23,15 @@ export default function Home() {
         </h1>
         <p className="max-w-md text-sm leading-relaxed text-fg-muted">
           Rent, power, broadband and shared groceries, split the way your flat actually works.
-          Import your bank CSV, settle up with the fewest transfers. Under construction.
+          Import your bank CSV, settle up with the fewest transfers.
         </p>
+        <Link
+          href="/login"
+          className="flex items-center gap-2 rounded-md bg-accent px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-accent-hover"
+        >
+          Try the demo
+          <ArrowRight className="size-4" strokeWidth={2} />
+        </Link>
       </main>
 
       <footer className="border-t border-border py-4 text-xs text-fg-muted">

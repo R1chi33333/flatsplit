@@ -7,7 +7,7 @@ Development follows small, releasable increments. Each item below is one loop.
 - [x] Loop 1: repository scaffold, CI pipeline, deployable blank landing page
 - [x] Loop 2: database schema (flats, members, expenses, shares) with Drizzle and Neon, migration workflow
 - [x] Loop 3: settlement engine — net balances and minimum-transfer algorithm, fully unit tested
-- [ ] Loop 4: auth with NextAuth — demo account credentials login, session handling
+- [x] Loop 4: auth with NextAuth — demo account credentials login, session handling
 - [ ] Release v0.1.0
 
 ## Milestone: v0.2.0 — Core product
